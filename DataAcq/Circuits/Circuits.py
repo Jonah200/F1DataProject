@@ -3,6 +3,9 @@ import json
 
 baseUrl = "https://api.jolpi.ca/ergast/f1/"
 
+
+# TODO: add functionality for current, last, etc within relevant functions
+
 def getCircuitsByYear(year: int):
     url = baseUrl + f"{year}/circuits"
     response = requests.get(url)
