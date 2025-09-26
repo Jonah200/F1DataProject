@@ -88,7 +88,6 @@ def get_drivers_by_pos_round(pos: int, year: int, race: int):
     data = response.json()
     return data
 
-
 def get_drivers_by_status(status: int):
     url = f"{base_url}/status/{status}/drivers/"
     response = requests.get(url)
@@ -121,6 +120,12 @@ def get_drivers_by_constructor_year(constructor: str, year: int):
 
 def get_drivers_by_status_round(constructor: int, year: int, race: int):
     url = f"{base_url}/{year}/{race}/constructors/{constructor}/drivers/"
+    response = requests.get(url)
+    data = response.json()
+    return data
+
+def get_driver_info(driverId):
+    url = base_url + f"{driverId}/"
     response = requests.get(url)
     data = response.json()
     return data
