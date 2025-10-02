@@ -12,3 +12,8 @@ def getDriverStandingsByYearRound(year: int, round: int):
     url = baseUrl + f"{year}/{round}/driverstandings"
     response = requests.get(url)
     return response.json()
+
+def getDriverStandingsCurrent(year: int):
+    url = baseUrl + f"{year}/last/driverstandings"
+    response = requests.get(url)
+    return response.json()

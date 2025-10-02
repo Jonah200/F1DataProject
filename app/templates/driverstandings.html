@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  table {
+    border-collapse: collapse;
+    width: 60%;
+    margin: 20px auto;
+  }
+  th, td {
+    border: 1px solid #333;
+    padding: 8px;
+    text-align: center; 
+    vertical-align: middle;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  h1 {
+    text-align: center;
+  }
+</style>
+
+<h1>{{ year }} Driver Standings</h1>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Driver</th>
+      <th>Constructor</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for standing in standings %}
+    <tr valign="top">
+      <td>{{ standing['position'] }}.</td>
+      <td>{{ standing['Driver']['givenName'] }} {{ standing['Driver']['familyName'] }}</td>
+      <td>{{ standing['Constructors'][0]['name'] }}</td>
+      <td>{{ standing['points'] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

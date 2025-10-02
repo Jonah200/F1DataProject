@@ -1,0 +1,132 @@
+2025-09-30 18:26:14,476 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-01 22:26:44,873 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-01 22:27:17,204 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-01 22:28:07,132 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-01 22:28:12,154 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-01 23:21:18,333 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-01 23:22:01,643 ERROR: Exception on /user/Jeremy [GET] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 73, in user
+    return render_template('user.html', user=user, posts=posts, form=form)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/base.html", line 32, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 14, in block 'content'
+    {% elif not ucrrent_user.is_following(user) %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'ucrrent_user' is undefined
+2025-10-01 23:22:54,874 ERROR: Exception on /user/person [GET] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 73, in user
+    return render_template('user.html', user=user, posts=posts, form=form)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/base.html", line 32, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 14, in block 'content'
+    {% elif not ucrrent_user.is_following(user) %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'ucrrent_user' is undefined
+2025-10-01 23:25:17,217 ERROR: Exception on /user/Jeremy [GET] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 73, in user
+    return render_template('user.html', user=user, posts=posts, form=form)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/base.html", line 32, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 14, in block 'content'
+    {% elif not ucrrent_user.is_following(user) %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'ucrrent_user' is undefined

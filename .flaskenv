@@ -1,0 +1,1 @@
+FLASK_APP=f1site.py
