@@ -98,3 +98,7 @@ Traceback (most recent call last):
                           ^^^^
 UnboundLocalError: cannot access local variable 'user' where it is not associated with a value
 2025-10-01 23:27:50,662 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 16:42:54,207 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-03 16:53:30,513 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-03 16:53:56,660 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-03 16:54:19,821 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
