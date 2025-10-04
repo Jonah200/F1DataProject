@@ -102,3 +102,6 @@ UnboundLocalError: cannot access local variable 'user' where it is not associate
 2025-10-03 16:53:30,513 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
 2025-10-03 16:53:56,660 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
 2025-10-03 16:54:19,821 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-03 19:07:53,664 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-03 19:57:26,175 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-03 20:00:05,924 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
