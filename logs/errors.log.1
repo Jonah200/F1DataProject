@@ -1,127 +1,118 @@
-2025-10-01 23:25:21,614 ERROR: Exception on /user/Jeremy [GET] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+2025-10-04 11:52:02,389 ERROR: Exception on /login [GET] [in C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py:875]
 Traceback (most recent call last):
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
     rv = self.handle_user_exception(e)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
     rv = self.dispatch_request()
          ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 73, in user
-    return render_template('user.html', user=user, posts=posts, form=form)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\routes.py", line 43, in login
+    return render_template('login.html', register_form=RegistrationForm(), login_form=form)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
     return _render(app, template, context)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\templating.py", line 131, in _render
     rv = template.render(context)
          ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
     self.environment.handle_exception()
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 1, in top-level template code
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\templates\login.html", line 1, in top-level template code
     {% extends "base.html" %}
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/base.html", line 32, in top-level template code
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\templates\base.html", line 42, in top-level template code
     {% block content %}{% endblock %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 14, in block 'content'
-    {% elif not ucrrent_user.is_following(user) %}
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\templates\login.html", line 38, in block 'content'
+    {{ register_form.confirm(class="form-control", placeholder="Confirm Password") }}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 490, in getattr
-    return getattr(obj, attribute)
-           ^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.UndefinedError: 'ucrrent_user' is undefined
-2025-10-01 23:25:28,150 ERROR: Exception on /user/Jeremy [GET] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\jinja2\utils.py", line 92, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'app.forms.RegistrationForm object' has no attribute 'confirm'
+2025-10-04 11:52:54,150 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-04 11:52:57,340 ERROR: Exception on /login [GET] [in C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py:875]
 Traceback (most recent call last):
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
     rv = self.handle_user_exception(e)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
     rv = self.dispatch_request()
          ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 73, in user
-    return render_template('user.html', user=user, posts=posts, form=form)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\routes.py", line 43, in login
+    return render_template('login.html', register_form=RegistrationForm(), login_form=form)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
     return _render(app, template, context)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\templating.py", line 131, in _render
     rv = template.render(context)
          ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
     self.environment.handle_exception()
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 1, in top-level template code
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\templates\login.html", line 1, in top-level template code
     {% extends "base.html" %}
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/base.html", line 32, in top-level template code
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\templates\base.html", line 42, in top-level template code
     {% block content %}{% endblock %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 14, in block 'content'
-    {% elif not ucrrent_user.is_following(user) %}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 490, in getattr
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\templates\login.html", line 66, in block 'content'
+    {{ form.hidden_tag() }}
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
     return getattr(obj, attribute)
            ^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.UndefinedError: 'ucrrent_user' is undefined
-2025-10-01 23:25:40,169 ERROR: Exception on /user/person [GET] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+jinja2.exceptions.UndefinedError: 'form' is undefined
+2025-10-04 11:53:51,841 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-04 11:53:55,182 ERROR: Exception on /login [GET] [in C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py:875]
 Traceback (most recent call last):
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
     rv = self.handle_user_exception(e)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
     rv = self.dispatch_request()
          ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 73, in user
-    return render_template('user.html', user=user, posts=posts, form=form)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\routes.py", line 43, in login
+    return render_template('login.html', register_form=RegistrationForm(), login_form=form)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
     return _render(app, template, context)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\templating.py", line 131, in _render
     rv = template.render(context)
          ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
     self.environment.handle_exception()
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 1, in top-level template code
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\templates\login.html", line 1, in top-level template code
     {% extends "base.html" %}
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/base.html", line 32, in top-level template code
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\templates\base.html", line 42, in top-level template code
     {% block content %}{% endblock %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 14, in block 'content'
-    {% elif not ucrrent_user.is_following(user) %}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 490, in getattr
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\templates\login.html", line 66, in block 'content'
+    {{ form.hidden_tag() }}
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
     return getattr(obj, attribute)
            ^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.UndefinedError: 'ucrrent_user' is undefined
-2025-10-01 23:26:01,147 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+jinja2.exceptions.UndefinedError: 'form' is undefined
+2025-10-04 11:54:15,557 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]

@@ -1,107 +1,110 @@
-2025-10-01 23:26:04,698 ERROR: Exception on /user/person [GET] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+2025-10-04 11:54:18,715 ERROR: Exception on /login [GET] [in C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py:875]
 Traceback (most recent call last):
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
     rv = self.handle_user_exception(e)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
     rv = self.dispatch_request()
          ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 73, in user
-    return render_template('user.html', user=user, posts=posts, form=form)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\routes.py", line 43, in login
+    return render_template('login.html', register_form=RegistrationForm(), login_form=form)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
     return _render(app, template, context)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\templating.py", line 131, in _render
     rv = template.render(context)
          ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
     self.environment.handle_exception()
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 1, in top-level template code
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\templates\login.html", line 1, in top-level template code
     {% extends "base.html" %}
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/base.html", line 32, in top-level template code
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\templates\base.html", line 42, in top-level template code
     {% block content %}{% endblock %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 14, in block 'content'
-    {% elif not current_user.is_following(user) %}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/models.py", line 60, in is_following
-    return db.sessions.scalar(query) is not None
-           ^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 1008, in __getattr__
-    raise AttributeError(name)
-AttributeError: sessions
-2025-10-01 23:26:31,541 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
-2025-10-01 23:26:36,714 ERROR: Exception on /follow/person [POST] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\templates\login.html", line 66, in block 'content'
+    {{ form.hidden_tag() }}
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'form' is undefined
+2025-10-04 11:55:06,682 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-04 11:56:24,326 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-04 11:57:29,359 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-04 12:01:50,806 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-04 12:02:15,456 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-04 12:25:45,833 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:08:33,500 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:20:18,014 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:20:40,410 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:20:56,680 ERROR: Exception on /register [POST] [in C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py:875]
 Traceback (most recent call last):
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\wtforms\validators.py", line 401, in __call__
+    import email_validator
+ModuleNotFoundError: No module named 'email_validator'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
     rv = self.handle_user_exception(e)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
     rv = self.dispatch_request()
          ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 113, in follow
-    return redirect(url_for('user)', username=username))
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/helpers.py", line 239, in url_for
-    return current_app.url_for(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1121, in url_for
-    return self.handle_url_build_error(error, endpoint, values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1110, in url_for
-    rv = url_adapter.build(  # type: ignore[union-attr]
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/werkzeug/routing/map.py", line 924, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'user)' with values ['username']. Did you mean 'user' instead?
-2025-10-01 23:27:14,717 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
-2025-10-01 23:27:25,822 ERROR: Exception on /unfollow/person [POST] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
-Traceback (most recent call last):
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 123, in unfollow
-    sa.select(User).where(user.username == username)
-                          ^^^^
-UnboundLocalError: cannot access local variable 'user' where it is not associated with a value
-2025-10-01 23:27:50,662 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
-2025-10-03 16:42:54,207 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
-2025-10-03 16:53:30,513 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
-2025-10-03 16:53:56,660 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
-2025-10-03 16:54:19,821 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
-2025-10-03 19:07:53,664 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
-2025-10-03 19:57:26,175 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
-2025-10-03 20:00:05,924 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\app\routes.py", line 55, in register
+    if form.validate_on_submit():
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\flask_wtf\form.py", line 86, in validate_on_submit
+    return self.is_submitted() and self.validate(extra_validators=extra_validators)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\wtforms\form.py", line 330, in validate
+    return super().validate(extra)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\wtforms\form.py", line 147, in validate
+    if not field.validate(self, extra):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\wtforms\fields\core.py", line 234, in validate
+    stop_validation = self._run_validation_chain(form, chain)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\wtforms\fields\core.py", line 254, in _run_validation_chain
+    validator(form, self)
+  File "C:\Users\jonah\Documents\Programming Files\F1DataProject\venv\Lib\site-packages\wtforms\validators.py", line 403, in __call__
+    raise Exception(
+Exception: Install 'email_validator' for email validation support.
+2025-10-05 14:21:44,602 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:23:52,310 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:25:32,382 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:26:33,859 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:27:59,950 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:30:18,534 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:30:29,387 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:31:02,880 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:37:48,165 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:39:08,098 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:41:12,304 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:43:06,490 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:43:27,267 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:43:54,732 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:44:38,200 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:45:01,501 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:45:33,279 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:46:10,383 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:47:54,737 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:49:53,559 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-05 14:50:10,682 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
+2025-10-06 15:22:49,015 INFO: Microblog startup [in C:\Users\jonah\Documents\Programming Files\F1DataProject\app\__init__.py:30]
