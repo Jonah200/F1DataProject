@@ -6,6 +6,8 @@ from flask_login import LoginManager
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
+import requests
+from DataAcq.Races import Races
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -28,5 +30,15 @@ if not app.debug:
 
     app.logger.setLevel(logging.INFO)
     app.logger.info('Microblog startup')
+
+
+@app.context_processor
+def inject_season_races():
+    try:
+        races = Races.getCurrentYearRaceNames()
+    except Exception:
+        races = []
+
+    return dict(races=races)
 
 from app import routes, models, errors

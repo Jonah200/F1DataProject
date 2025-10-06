@@ -1,0 +1,123 @@
+2025-10-01 23:26:04,698 ERROR: Exception on /user/person [GET] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 73, in user
+    return render_template('user.html', user=user, posts=posts, form=form)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/base.html", line 32, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/user.html", line 14, in block 'content'
+    {% elif not current_user.is_following(user) %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/models.py", line 60, in is_following
+    return db.sessions.scalar(query) is not None
+           ^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 1008, in __getattr__
+    raise AttributeError(name)
+AttributeError: sessions
+2025-10-01 23:26:31,541 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-01 23:26:36,714 ERROR: Exception on /follow/person [POST] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 113, in follow
+    return redirect(url_for('user)', username=username))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/helpers.py", line 239, in url_for
+    return current_app.url_for(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1121, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1110, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/werkzeug/routing/map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'user)' with values ['username']. Did you mean 'user' instead?
+2025-10-01 23:27:14,717 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-01 23:27:25,822 ERROR: Exception on /unfollow/person [POST] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 123, in unfollow
+    sa.select(User).where(user.username == username)
+                          ^^^^
+UnboundLocalError: cannot access local variable 'user' where it is not associated with a value
+2025-10-01 23:27:50,662 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 15:59:54,400 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 19:54:16,367 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 19:55:22,534 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 19:55:36,997 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 19:59:10,565 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 19:59:12,334 ERROR: Exception on / [GET] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 19, in index
+    session_name = session['session_name']
+                   ~~~~~~~^^^^^^^^^^^^^^^^
+TypeError: list indices must be integers or slices, not str

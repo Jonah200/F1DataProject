@@ -1,12 +1,67 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+    <style>
+        table {
+        border-collapse: collapse;
+        width: 60%;
+        margin: 20px auto;
+        }
+        th, td {
+        border: 1px solid #333;
+        padding: 8px;
+        text-align: center; 
+        vertical-align: middle;
+        }
+        th {
+        background-color: #f2f2f2;
+        }
+        h1 {
+        text-align: center;
+        }
+        h3 {
+        text-align: center;
+        }
+    </style>
+
     {% if not current_user.is_anonymous %}
     <h1>Hi, {{ current_user.username }}!</h1>
     {% else %}
     <h1>Hi, Guest!</h1>
     {% endif %}
-    {% for post in posts %}
-    <div><p>{{ post.author.username }}</b></p></div>
-    {% endfor %}
+
+    <img src="{{ url_for('static', filename='media/maps/map.png') }}" width="400" style="display: block; margin: 0 auto;">
+    <img src="{{ url_for('static', filename='media/circuits/' + circuit_name.lower().replace(' ', '_') + '.png') }}" width="600" style="display: block; margin: 0 auto;">
+
+    <h3>{{ circuit['circuitName'] ~ ', ' ~ circuit['Location']['locality'] ~ ', ' ~ circuit['Location']['country'] }}</h3><br><hr>
+    
+    <h1>{{ session_name }}: {{ circuit_name }} {{ year }}</h1>
+    <table>
+        <thead>
+            <tr>
+            <th></th>
+            <th>Driver</th>
+            <th>Time</th>
+            <th>Delta</th>
+            {% if 'points' in drivers[0] %}
+            <th>Points</th>
+            {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for driver in drivers %}
+            <tr valign="top">
+            <td>{{ driver['position'] }}.</td>
+            <td>{{ driver['driver_name'] }}</td>
+            <td>{{ driver['time'] }}</td>
+            <td>{{ driver['gap_to_leader'] }}</td>
+            {% if 'points' in driver %}
+            <td>{{ driver['points'] }}</td>
+            {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock %}

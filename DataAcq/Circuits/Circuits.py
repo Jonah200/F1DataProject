@@ -6,6 +6,18 @@ baseUrl = "https://api.jolpi.ca/ergast/f1/"
 
 # TODO: add functionality for current, last, etc within relevant functions
 
+def getLastCircuit():
+    url = baseUrl + "current/last/circuits/"
+    response = requests.get(url)
+    data = response.json()
+    return data
+
+def getNextCircuit():
+    url = baseUrl + "current/next/circuits/"
+    response = requests.get(url)
+    data = response.json()
+    return data
+
 def getCircuitsByYear(year: int):
     url = baseUrl + f"{year}/circuits"
     response = requests.get(url)

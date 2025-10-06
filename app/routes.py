@@ -7,21 +7,70 @@ from app.models import User
 from urllib.parse import urlsplit
 from datetime import datetime, timezone
 from DataAcq.Standings import DriverStandings
+from DataAcq.Races import Races
+from DataAcq.LastSession import LastSession
+from DataAcq.Drivers import drivers
+from DataAcq.Circuits import Circuits
+from util import time_conversion as tc
+from util import circuit_map, race_mapping
 
 @login_required
 @app.route('/index')
 @app.route('/')
 def index():
-    user = {'username': 'Jeremy'}
-    title = 'F1 Data Site'
-    posts = [
-        {
-            'user_id' : 1,
-            'body' : 'Ferrari',
-            'author' : 'Charles Leclerc'
-        }
-    ]
-    return render_template('index.html', title=title, posts=posts)
+    session = LastSession.get_last_session()
+    session_name = session[0]['session_name']
+    year = session[0]['year']
+    circuit_name = session[0]['circuit_short_name']
+    session_result = LastSession.get_last_session_results()
+    session_key = session_result[0]['session_key']
+    session_drivers = drivers.get_drivers_by_session(session_key)
+    driver_dict = {driver['driver_number']: f"{driver['first_name']} {driver['last_name']}" for driver in session_drivers}
+    for result in session_result:
+        if 'race' in session_name.lower():
+            if result['duration'] is not None:
+                result['time'] = tc.convert_time(result['duration']).lstrip("0")
+            else:
+                result['time'] = 'lapped'
+            if '+' not in str(result['gap_to_leader']) and result['gap_to_leader'] != 0:
+                result['gap_to_leader'] = '+' + str(tc.convert_time(result['gap_to_leader']).lstrip("0"))
+            result['points'] = int(result['points'])
+        elif 'race' not in session_name.lower() and 'qualifying' not in session_name.lower():
+            result['time'] = tc.convert_time(result['duration']).lstrip("0")
+        else:
+            if result['duration'][2] is not None:
+                result['time'] = tc.convert_time(result['duration'][2]).lstrip("0")
+                result['gap_to_leader'] = result['gap_to_leader'][2]
+            elif result['duration'][1] is not None:
+                result['time'] = tc.convert_time(result['duration'][1]).lstrip("0")
+                result['gap_to_leader'] = result['gap_to_leader'][1]
+            elif result['duration'][0] is not None:
+                result['time'] = tc.convert_time(result['duration'][0]).lstrip("0")
+                result['gap_to_leader'] = result['gap_to_leader'][0]
+            else:
+                result['position'] = '-'
+                for i in ['dnf', 'dns', 'dsq']:
+                    if result[i] == True:
+                        result['time'] = i.upper()
+                        result['gap_to_leader'] = '-'
+                        break
+                    else:
+                        result['time'] = '-'
+                        result['gap_to_leader'] = '-'
+        if result['gap_to_leader'] == 0:
+                result['gap_to_leader'] = '-'
+        result['driver_name'] = driver_dict[result['driver_number']]
+
+    if 'race' not in session_name.lower():
+        circuit = Circuits.getNextCircuit()
+    else:
+        circuit = Circuits.getLastCircuit()
+    circuit = circuit['MRData']['CircuitTable']['Circuits'][0]
+    loc = circuit['Location']
+    location = [float(loc['lat']), float(loc['long']), circuit_name]
+    circuit_map.generate_circuit_map(location[0], location[1], location[2])
+    
+    return render_template('index.html', drivers=session_result, session_name=session_name, year=year, circuit_name=circuit_name, circuit=circuit)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -142,3 +191,16 @@ def driver_standings():
     standings = DriverStandings.getDriverStandingsCurrent(year)
     standings = standings['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings']
     return render_template('driverstandings.html', title=f"Driver Standings {year}", standings=standings, year=year)
+
+@app.route('/race', methods=['GET','POST'])
+@login_required
+def race_result():
+    value = request.args.get('race')
+    value = value.replace('%20', ' ')
+    circuit = race_mapping.map_race_name(value, 'circuitId')
+    year = datetime.now().year
+    result = Races.getRaceResultByYearCircuit(year, circuit)
+    results = result['MRData']['RaceTable']['Races'][0]['Results']
+    return render_template('race_result.html', title=f"{year} {value} Race Result", results=results, year=year, value=value)
+
+

@@ -1,0 +1,107 @@
+2025-10-03 23:06:39,940 ERROR: Exception on / [GET] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 56, in index
+    img = circuit_image.scrape_circuit_image(year)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/util/webscrape/circuit_image.py", line 6, in scrape_circuit_image
+    response = requests.get(url)
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/requests/sessions.py", line 575, in request
+    prep = self.prepare_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/requests/models.py", line 367, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/requests/models.py", line 438, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL '2025': No scheme supplied. Perhaps you meant https://2025?
+2025-10-03 23:09:10,792 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:09:54,471 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:10:30,066 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:10:58,821 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:11:49,410 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:12:14,229 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:12:33,246 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:13:32,523 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:19:43,678 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:20:36,509 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:21:14,143 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:21:51,520 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:22:30,162 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:23:55,856 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:24:45,632 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:25:40,011 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:26:13,896 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:27:37,327 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:27:40,239 ERROR: Exception on / [GET] [in /Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/routes.py", line 55, in index
+    return render_template('index.html', drivers=session_result, session_name=session_name, year=year, circuit_name=circuit_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/base.html", line 32, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/app/templates/index.html", line 31, in block 'content'
+    <img src="{{ url_for('app', filename='media/melbourne.png') }}">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1121, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/flask/app.py", line 1110, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jeremybullis/Desktop/F1DataProject/venv/lib/python3.11/site-packages/werkzeug/routing/map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'app' with values ['filename']. Did you mean 'static' instead?
+2025-10-03 23:27:54,031 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:29:03,066 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:29:22,672 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:30:04,644 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:36:01,582 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:36:37,056 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-03 23:57:16,408 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-04 00:14:42,741 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]
+2025-10-05 01:06:10,822 INFO: Microblog startup [in /Users/jeremybullis/Desktop/F1DataProject/app/__init__.py:30]

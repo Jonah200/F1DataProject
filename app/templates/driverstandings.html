@@ -27,7 +27,9 @@
     <tr>
       <th></th>
       <th>Driver</th>
+      <th>Nationality</th>
       <th>Constructor</th>
+      <th>Chassis</th>
       <th>Points</th>
     </tr>
   </thead>
@@ -36,8 +38,10 @@
     <tr valign="top">
       <td>{{ standing['position'] }}.</td>
       <td>{{ standing['Driver']['givenName'] }} {{ standing['Driver']['familyName'] }}</td>
+      <td><img src="static/media/flags/{{ standing['Driver']['nationality'].lower().replace(' ', '_') }}.png" width="50"></td>
       <td>{{ standing['Constructors'][0]['name'] }}</td>
-      <td>{{ standing['points'] }}</td>
+      <td><img src="static/media/cars/{{ standing['Constructors'][0]['name'].lower().replace(' ', '_') }}_2025.png" width="175"></td>
+      <td>{{ standing['points'] }} (-{{ standings[0]['points']|int - standing['points']|int }})</td>
     </tr>
     {% endfor %}
   </tbody>

@@ -1,4 +1,3 @@
-import pandas as pd
 import requests
 
 base_url = "https://api.jolpi.ca/ergast/f1/"
@@ -149,3 +148,14 @@ def get_driver_info(driverId):
     data = response.json()
     return data
 
+def get_driver_by_number_session(number: int, session: int):
+    url = f"https://api.openf1.org/v1/drivers?driver_number={number}&session_key={session}"
+    response = requests.get(url)
+    data = response.json()
+    return data
+
+def get_drivers_by_session(session: int):
+    url = f"https://api.openf1.org/v1/drivers?session_key={session}"
+    response = requests.get(url)
+    data = response.json()
+    return data
