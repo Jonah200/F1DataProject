@@ -2,7 +2,7 @@ from app import app, db
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 from app.models import User, Post
-import flask_sqlalchemy
+from flask_sqlalchemy import SQLAlchemy
 
 @app.shell_context_processor
 def make_shell_context():
