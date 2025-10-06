@@ -89,7 +89,7 @@ def login():
         if not next_page or urlsplit(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
-    return render_template('login.html', title='Sign In', form=form)
+    return render_template('login.html', register_form=RegistrationForm(), login_form=form)
 
 @app.route('/logout')
 def logout():
@@ -108,7 +108,7 @@ def register():
         db.session.commit()
         flash("Congratulations, you are now a registered user!")
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('login.html', title='Register', register_form=form, login_form=LoginForm())
 
 @app.route('/user/<username>')
 @login_required
