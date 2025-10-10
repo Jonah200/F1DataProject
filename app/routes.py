@@ -68,7 +68,7 @@ def index():
     circuit = circuit['MRData']['CircuitTable']['Circuits'][0]
     loc = circuit['Location']
     location = [float(loc['lat']), float(loc['long']), circuit_name]
-    circuit_map.generate_circuit_map(location[0], location[1], location[2])
+    #circuit_map.generate_circuit_map(location[0], location[1], location[2])
     
     return render_template('index.html', session_result=session_result, session_name=session_name, year=year, circuit_name=circuit_name, circuit=circuit)
 
