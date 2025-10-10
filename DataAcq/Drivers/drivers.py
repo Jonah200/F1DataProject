@@ -159,3 +159,17 @@ def get_drivers_by_session(session: int):
     response = requests.get(url)
     data = response.json()
     return data
+
+def get_driver_current_season_results(driverId: str):
+    url = base_url + f"current/drivers/{driverId}/results"
+    response = requests.get(url)
+    data = response.json()
+    return data
+
+def get_current_season_driver_ids():
+    url = base_url + "current/drivers"
+    response = requests.get(url)
+    data = response.json()
+    drivers = {}
+    drivers = {driver['driverId'] : str(driver['givenName'] + " " + driver['familyName']) for driver in data['MRData']['DriverTable']['Drivers']}
+    return drivers

@@ -21,7 +21,9 @@
     }
   </style>
   
-  <h1>{{ year }} {{ value }}</h1>
+  <h1>{{ year }} {{ value }} Race Result</h1>
+  <img src="{{ url_for('static', filename='media/circuits/' + circuit['circuitId'].lower().replace(' ', '_') + '.png') }}" width="600" style="display: block; margin: 0 auto;"><br>
+  <h3 style="text-align: center;">{{ circuit['circuitName'] ~ ', ' ~ circuit['Location']['locality'] ~ ', ' ~ circuit['Location']['country'] }}</h3><br><hr>
   <table>
     <thead>
       <tr>
@@ -30,6 +32,9 @@
         <th>Nationality</th>
         <th>Constructor</th>
         <th>Chassis</th>
+        <th>Time</th>
+        <th>Delta</th>
+        <th>Change</th>
         <th>Points</th>
       </tr>
     </thead>
@@ -37,10 +42,15 @@
       {% for result in results %}
       <tr valign="top">
         <td>{{ result['position'] }}.</td>
-        <td>{{ result['Driver']['givenName'] }} {{ result['Driver']['familyName'] }}</td>
+        <td><img src="static/media/drivers/{{ result['Driver']['driverId'] }}.avif" width="50"><br>
+          {{ result['Driver']['givenName'] }}<br> {{ result['Driver']['familyName'] }}</td>
         <td><img src="static/media/flags/{{ result['Driver']['nationality'].lower().replace(' ', '_') }}.png" width="50"></td>
-        <td>{{ result['Constructor']['name'] }}</td>
-        <td><img src="static/media/cars/{{ result['Constructor']['name'].lower().replace(' ', '_') }}_2025.png" width="175"></td>
+        <td><img src="static/media/constructors/{{ result['Constructor']['constructorId'] }}.png" width="50"><br>
+          {{ result['Constructor']['name'] }}</td>
+        <td><img src="static/media/cars/{{ result['Constructor']['constructorId'] }}_2025.png" width="175"></td>
+        <td>{{ result['Time']['millis'] }}</td>
+        <td>{{ result['Time']['time'] }}</td>
+        <td>{{ result['change'] }}</td>
         <td>{{ result['points'] }}</td>
       </tr>
       {% endfor %}

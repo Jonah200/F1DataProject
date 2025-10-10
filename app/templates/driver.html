@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    table {
+      border-collapse: collapse;
+      width: 60%;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 8px;
+      text-align: center; 
+      vertical-align: middle;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    h1 {
+      text-align: center;
+    }
+  </style>
+  
+  <h1>{{ info['givenName'] }} {{ info['familyName'] }}</h1>
+  <img src="{{ url_for('static', filename='media/drivers/' + driverId + '_full.avif') }}" width="200" style="display: block; margin: 0 auto;"><br>
+  <img src="{{ url_for('static', filename='media/flags/' + info['nationality'] + '.png') }}" width="200" style="display: block; margin: 0 auto;"><br>
+  <img src="{{ url_for('static', filename='media/constructors/' + info['constructor'] + '.png') }}" width="200" style="display: block; margin: 0 auto;"><br>
+  <img src="{{ url_for('static', filename='media/cars/' + info['constructor'] + '_' + info['year'] + '.png') }}" width="1000" style="display: block; margin: 0 auto;"><br>
+  <h3 style="text-align: center;">#{{ info['number'] }} | Nationality: {{ info['nationality'] }} | Born: {{ info['dateOfBirth'] }}</h3><br><hr>
+  <h2 style="text-align: center;">{{ info['year'] }} Stats</h2><br>
+  <table>
+    <tbody>
+      <tr valign="top">
+        <td>Races</td>
+        <td>{{ info['races'] }}</td>
+      </tr>
+      <tr valign="top">
+        <td>Wins</td>
+        <td>{{ info['wins'] }}</td>
+      </tr>
+      <tr valign="top">
+        <td>Points</td>
+        <td>{{ info['points'] }}</td>
+      </tr>
+      <tr valign="top">
+        <td>Championship Position</td>
+        <td>{{ info['position'] }}</td>
+      </tr>
+      <tr valign="top">
+        <td>Podiums</td>
+        <td>{{ info['podiums'] }}</td>
+      </tr>
+      <tr valign="top">
+        <td>Points Finishes</td>
+        <td>{{ info['points_finishes'] }}</td>
+      </tr>
+      <tr valign="top">
+        <td>Poles</td>
+        <td>{{ info['poles'] }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+{% endblock %}

@@ -8,6 +8,7 @@ from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
 import requests
 from DataAcq.Races import Races
+from DataAcq.Drivers import drivers as drs
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -40,5 +41,14 @@ def inject_season_races():
         races = []
 
     return dict(races=races)
+
+@app.context_processor
+def inject_season_drivers():
+    try:
+        drivers = drs.get_current_season_driver_ids()
+    except Exception:
+        drivers = []
+    
+    return dict(drivers=drivers)
 
 from app import routes, models, errors

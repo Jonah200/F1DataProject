@@ -37,10 +37,12 @@
     {% for standing in standings %}
     <tr valign="top">
       <td>{{ standing['position'] }}.</td>
-      <td>{{ standing['Driver']['givenName'] }} {{ standing['Driver']['familyName'] }}</td>
+      <td><img src="static/media/drivers/{{ standing['Driver']['driverId'] }}.avif" width="50"><br>
+        {{ standing['Driver']['givenName'] }} {{ standing['Driver']['familyName'] }}</td>
       <td><img src="static/media/flags/{{ standing['Driver']['nationality'].lower().replace(' ', '_') }}.png" width="50"></td>
-      <td>{{ standing['Constructors'][0]['name'] }}</td>
-      <td><img src="static/media/cars/{{ standing['Constructors'][0]['name'].lower().replace(' ', '_') }}_2025.png" width="175"></td>
+      <td><img src="static/media/constructors/{{ standing['Constructors'][0]['constructorId'] }}.png" width="50"><br>
+        {{ standing['Constructors'][0]['name'] }}</td>
+      <td><img src="static/media/cars/{{ standing['Constructors'][0]['constructorId'] }}_2025.png" width="175"></td>
       <td>{{ standing['points'] }} (-{{ standings[0]['points']|int - standing['points']|int }})</td>
     </tr>
     {% endfor %}
