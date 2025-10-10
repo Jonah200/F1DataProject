@@ -31,8 +31,9 @@
     <h1>Hi, Guest!</h1>
     {% endif %}
 
-    <img src="{{ url_for('static', filename='media/maps/map.png') }}" width="400" style="display: block; margin: 0 auto;">
-    <img src="{{ url_for('static', filename='media/circuits/' + circuit_name.lower().replace(' ', '_') + '.png') }}" width="600" style="display: block; margin: 0 auto;">
+    <br>
+    <img src="{{ url_for('static', filename='media/maps/map.png') }}" width="400" style="display: block; margin: 0 auto;"><br>
+    <img src="{{ url_for('static', filename='media/circuits/' + circuit['circuitId'].lower().replace(' ', '_') + '.png') }}" width="600" style="display: block; margin: 0 auto;"><br>
 
     <h3>{{ circuit['circuitName'] ~ ', ' ~ circuit['Location']['locality'] ~ ', ' ~ circuit['Location']['country'] }}</h3><br><hr>
     
@@ -44,13 +45,13 @@
             <th>Driver</th>
             <th>Time</th>
             <th>Delta</th>
-            {% if 'points' in drivers[0] %}
+            {% if 'points' in session_result[0] %}
             <th>Points</th>
             {% endif %}
             </tr>
         </thead>
         <tbody>
-            {% for driver in drivers %}
+            {% for driver in session_result %}
             <tr valign="top">
             <td>{{ driver['position'] }}.</td>
             <td>{{ driver['driver_name'] }}</td>

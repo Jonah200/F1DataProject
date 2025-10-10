@@ -36,6 +36,14 @@
               {% endfor %}
             </select>
           </form>
+          <form id="optionForm">
+            <select id="driverSelect" onchange="navigateDrivers()" style="display: inline; margin-left: 20px;">
+              <option value="">2025 Drivers</option>
+              {% for driver in drivers.keys() %}
+                <option value="{{ driver }}" {% if request.args.get('drivers') == driver|string %}selected{% endif %}>{{ drivers[driver] }}</option>
+              {% endfor %}
+            </select>
+          </form>
           {% endif %}
         </div>
         <script>
@@ -45,7 +53,15 @@
               window.location.href = `/race?season=current&race=${value}`;
             }
           }
-          </script>
+        </script>
+        <script>
+          function navigateDrivers() {
+            const value = document.getElementById("driverSelect").value;
+            if (value) {
+              window.location.href = `/drivers/${value}`;
+            }
+          }
+        </script>
           
         <hr>
         {% with messages = get_flashed_messages() %}

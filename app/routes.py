@@ -70,7 +70,7 @@ def index():
     location = [float(loc['lat']), float(loc['long']), circuit_name]
     circuit_map.generate_circuit_map(location[0], location[1], location[2])
     
-    return render_template('index.html', drivers=session_result, session_name=session_name, year=year, circuit_name=circuit_name, circuit=circuit)
+    return render_template('index.html', session_result=session_result, session_name=session_name, year=year, circuit_name=circuit_name, circuit=circuit)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -199,8 +199,33 @@ def race_result():
     value = value.replace('%20', ' ')
     circuit = race_mapping.map_race_name(value, 'circuitId')
     year = datetime.now().year
-    result = Races.getRaceResultByYearCircuit(year, circuit)
-    results = result['MRData']['RaceTable']['Races'][0]['Results']
-    return render_template('race_result.html', title=f"{year} {value} Race Result", results=results, year=year, value=value)
+    results, circuit = Races.getRaceResultByYearCircuit(year, circuit)
+    return render_template('race_result.html', title=f"{year} {value} Race Result", results=results, year=year, value=value, circuit=circuit)
+
+@app.route('/drivers/<driverId>', methods=['GET', 'POST'])
+@login_required
+def driver_info(driverId: str):
+    results = drivers.get_driver_current_season_results(driverId)['MRData']['RaceTable']['Races']
+    standing = DriverStandings.getCurrentYearSingleDriverStandings(driverId)['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings'][0]
+    info = {}
+
+    info['wins'] = standing['wins']
+    info['points'] = standing['points']
+    info['position'] = standing['position']
+    info['races'] = len(results)
+    info['podiums'] = sum(1 for race in results if int(race['Results'][0]['position']) <= 3)
+    info['points_finishes'] = sum(1 for race in results if int(race['Results'][0]['position']) <= 10)
+    info['poles'] = sum(1 for race in results if int(race['Results'][0]['grid']) == 1)
+    info['year'] = results[0]['season']
+    info['number'] = results[0]['Results'][0]['Driver']['permanentNumber']
+    info['givenName'] = results[0]['Results'][0]['Driver']['givenName']
+    info['familyName'] = results[0]['Results'][0]['Driver']['familyName']
+    info['code'] = results[0]['Results'][0]['Driver']['code']
+    info['nationality'] = results[0]['Results'][0]['Driver']['nationality']
+    info['dateOfBirth'] = datetime.strptime(results[0]['Results'][0]['Driver']['dateOfBirth'], "%Y-%m-%d").strftime("%B %-d, %Y")
+    info['constructor'] = results[len(results)-1]['Results'][0]['Constructor']['constructorId']
+    print(info)
+    return render_template('driver.html', info=info, driverId=driverId)
+
 
 

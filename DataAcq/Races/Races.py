@@ -1,4 +1,5 @@
 import requests
+from util import time_conversion as tc
 import json
 
 baseUrl = "https://api.jolpi.ca/ergast/f1/"
@@ -46,6 +47,24 @@ def getRaceResultBySessionKey(session_key: int):
 
 def getRaceResultByYearCircuit(year: int, circuitId: str):
     url = baseUrl + f"{year}/circuits/{circuitId}/results/"
+    print(url)
     response = requests.get(url)
     data = response.json()
-    return data
+    results = data['MRData']['RaceTable']['Races'][0]['Results']
+    leader = int(results[0]['Time']['millis'])
+    for result in results:
+        result['change'] = int(result['grid']) - int(result['position'])
+        result['change'] = '+' + str(result['change']) if result['change'] > 0 else str(result['change'])
+        if result['status'] == 'Finished':
+            result['Time']['millis'] = tc.convert_time(int(result['Time']['millis'])/1000)
+        elif 'Lap' in result['status']:
+            result['Time']['millis'] = tc.convert_time(int(result['Time']['millis'])/1000)
+            result['Time']['time'] = result['status']
+        else:
+            result['Time'] = {
+                'millis' : result['status'],
+                'time' : 'N/A'
+            }
+
+    circuit = data['MRData']['RaceTable']['Races'][0]['Circuit']
+    return results, circuit

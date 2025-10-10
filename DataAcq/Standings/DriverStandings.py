@@ -17,3 +17,9 @@ def getDriverStandingsCurrent(year: int):
     url = baseUrl + f"{year}/last/driverstandings"
     response = requests.get(url)
     return response.json()
+
+def getCurrentYearSingleDriverStandings(driverId: str):
+    url = baseUrl + f"/current/drivers/{driverId}/driverstandings"
+    response = requests.get(url)
+    print(response.json())
+    return response.json()
