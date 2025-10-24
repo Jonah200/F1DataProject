@@ -173,3 +173,11 @@ def get_current_season_driver_ids():
     drivers = {}
     drivers = {driver['driverId'] : str(driver['givenName'] + " " + driver['familyName']) for driver in data['MRData']['DriverTable']['Drivers']}
     return drivers
+
+def get_driver_by_session(code: str, session: str):
+    url = f'https://api.openf1.org/v1/drivers?name_acronym={code}&session_key={session}'
+    print(url)
+    response = requests.get(url)
+    data = response.json()
+    return data
+    

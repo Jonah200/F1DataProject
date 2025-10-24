@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 style="text-align: center;">{{ racename }} Qualifying:</h2><br>
+    <h3 style="text-align: center;">{{ driver1_name }} vs {{ driver2_name }}</h3>
+    <img src="{{ url_for('static', filename='media/circuits/' + raceId + '.png') }}" width="500" style="display: block; margin: 0 auto;"><br>
+
+    {{ graph | safe }}
+
+{% endblock %}

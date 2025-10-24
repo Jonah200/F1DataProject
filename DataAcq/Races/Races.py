@@ -1,6 +1,7 @@
 import requests
 from util import time_conversion as tc
 import json
+from util import race_mapping
 
 baseUrl = "https://api.jolpi.ca/ergast/f1/"
 
@@ -33,8 +34,15 @@ def getCurrentYearRaceNames() -> list:
     race_list = [race['raceName'] for race in races]
     return race_list
 
-def getSessionByYearCircuit(circuit: str, year: int):
-    url = f"https://api.openf1.org/v1/sessions?year={year}&circuit_short_name={circuit}"
+def getSessionByYearCircuit(race: str):
+    url = baseUrl + f'current/circuits/{race}/results/'
+    print(url)
+    response = requests.get(url)
+    data = response.json()
+    return data
+
+def getSessionByYearCountry(country: str, year: int):
+    url = f"https://api.openf1.org/v1/sessions?year={year}&country={country}"
     response = requests.get(url)
     data = response.json()
     return data
