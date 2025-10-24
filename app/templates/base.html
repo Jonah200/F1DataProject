@@ -2,9 +2,9 @@
 <html>
     <head>
       {% if title %}
-      <title>{{ title }} - Microblog</title>
+      <title>{{ title }} - PitCWRU</title>
       {% else %}
-      <title>Welcome to Microblog</title>
+      <title>PitCWRU</title>
       {% endif %}
       <!-- Bootstrap CSS -->
       <link
@@ -19,7 +19,45 @@
        {% block styles %}{% endblock %}
     </head>
     <body>
-        <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">PitCWRU</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0 mr-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Races
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Action2</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Drivers
+                  </a>
+                  <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown2">
+                    <a class="dropdown-item" href="#">Action</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Constructors
+                  </a>
+                  <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown3">
+                    <a class="dropdown-item" href="#">Action</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        {# <div class="sticky">
           F1 Data Site:
           <a href="{{ url_for('index') }}">Home</a>
           {% if current_user.is_anonymous %}
@@ -45,8 +83,8 @@
             </select>
           </form>
           {% endif %}
-        </div>
-        <script>
+        </div> #}
+        {# <script>
           function navigateRaces() {
             const value = document.getElementById("raceSelect").value;
             if (value) {
@@ -61,9 +99,8 @@
               window.location.href = `/drivers/${value}`;
             }
           }
-        </script>
+        </script> #}
           
-        <hr>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
