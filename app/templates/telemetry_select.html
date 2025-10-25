@@ -1,64 +1,89 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Race/Driver Selection</h2>
-
+    <div class="container-fluid">
         <title>Telemetry Comparison</title>
-        <script>
-            async function loadDrivers() {
-                const raceId = document.getElementById('race').value;
-                const response = await fetch(`/load_drivers?raceId=${raceId}`);
-                const drivers = await response.json();
-
-                const driver1 = document.getElementById('driver1');
-                const driver2 = document.getElementById('driver2');
-                driver1.innerHTML = '';
-                driver2.innerHTML = '';
-
-                drivers.forEach(d => {
-                    const fullName = `${d.givenName} ${d.familyName}`;
-                    const code = d.code;
-
-                    driver1.add(new Option(fullName, code));
-                    driver2.add(new Option(fullName, code));
-                });
-            }
-
-            async function getTelemetry() {
-                const raceId = document.getElementById('race').value;
-                const driver1 = document.getElementById('driver1').value;
-                const driver2 = document.getElementById('driver2').value;
-
-                window.location.href = `/get_telemetry?raceId=${raceId}&driver1=${driver1}&driver2=${driver2}`;
-
-                // const data = await response.json();
-
-                // document.getElementById('result').textContent = JSON.stringify(data, null, 2);
-            }
-
+        <div class="row">
+            <div class="col col-xs-3">
+                <h5 class="text-center">Race/Driver Selection</h5>
             
-        </script>
-  
-    <h2>Telemetry Comparison</h2>
+                <h6 class="text-center">Telemetry Comparison</h6>
+                <div class="mb-3">
+                    <label for="race">Select Race:</label>
+                    <select id="race" class="form-select">
+                        <option value="" disabled selected>Select a race</option>
+                        {% for race in races %}
+                            <option value="{{ race }}" {% if request.args.get('race') == r|string %}selected{% endif %}>{{ race }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-    <label for="race">Select Race:</label>
-    <select id="race" onchange="loadDrivers()">
-        <option value="">-- Select a race --</option>
-        {% for race in races %}
-            <option value="{{ race }}" {% if request.args.get('race') == r|string %}selected{% endif %}>{{ race }}</option>
-        {% endfor %}
-    </select>
+                <div class="mb-3">
+                    <label for="session">Session:</label>
+                    <select class="form-select" id="session">
+                        <option disabled selected>TODO</option>
+                    </select>
+                </div>
 
-    <br><br>
+                <div class="mb-3">
+                    <label for="driver1">Driver 1:</label>
+                    <select class="form-select" id="driver1">
+                        <option disabled selected>Select a race first</option>
+                    </select>
+                </div>
 
-    <label for="driver1">Driver 1:</label>
-    <select id="driver1"></select>
+                <div class="mb-3">
+                    <label for="driver2">Driver 2:</label>
+                    <select class="form-select" id="driver2">
+                        <option disabled selected>Select a race first</option>
+                    </select>
+                </div>
 
-    <label for="driver2">Driver 2:</label>
-    <select id="driver2"></select>
+                <div class="text-center mb-3">
+                    <button class="btn btn-success" type="submit" onclick="getTelemetry()">Show Telemetry</button>
+                </div>
 
-    <br><br>
-    <button onclick="getTelemetry()">Show Telemetry</button>
+                <pre id="result"></pre>
+            </div>
+            <div class="vr p-0"></div>
+            <div class="col col-9 overflow-y-scroll"></div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+<script>
+    $('#race').on('change', function () {
+        loadDrivers();
+    });
+    async function loadDrivers() {
+        const raceId = document.getElementById('race').value;
+        const response = await fetch(`/load_drivers?raceId=${raceId}`);
+        const drivers = await response.json();
 
-    <pre id="result"></pre>
+        const driver1 = document.getElementById('driver1');
+        const driver2 = document.getElementById('driver2');
+        driver1.innerHTML = '';
+        driver2.innerHTML = '';
+
+        drivers.forEach(d => {
+            const fullName = `${d.givenName} ${d.familyName}`;
+            const code = d.code;
+
+            driver1.add(new Option(fullName, code));
+            driver2.add(new Option(fullName, code));
+        });
+    }
+
+    async function getTelemetry() {
+        const raceId = $('#race').val();
+        const driver1 = $('#driver1').val();
+        const driver2 = $('#driver2').val();
+
+        document.location.href = `/get_telemetry?raceId=${raceId}&driver1=${driver1}&driver2=${driver2}`;
+
+        // const data = await response.json();
+
+        // document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+    }
+</script>
 {% endblock %}
