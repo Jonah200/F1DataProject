@@ -1,9 +1,55 @@
 {% extends "base.html" %}
 
 {% block content %}
+
     <h2 style="text-align: center;">{{ racename }} Qualifying:</h2><br>
     <h3 style="text-align: center;">{{ driver1_name }} vs {{ driver2_name }}</h3>
-    <img src="{{ url_for('static', filename='media/circuits/' + raceId + '.png') }}" width="500" style="display: block; margin: 0 auto;"><br>
+    <div style="position: relative; width: 100%; height: 600px;">
+
+        <!-- Left stack -->
+        <div style="
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        ">
+            <img src="{{ url_for('static', filename='media/drivers/' + driver1_id + '_full.avif') }}" alt="Left top" style="width: 100px;">
+            <img src="{{ url_for('static', filename='media/constructors/' + con1 + '.png') }}" alt="Left top" style="width: 100px;">
+            <img src="{{ url_for('static', filename='media/cars/' + con1 + '_2025.png') }}" alt="Left bottom" style="width: 500px;">
+        </div>
+
+        <div style="
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        ">
+            <img src="{{ url_for('static', filename='media/track_dominance/track_dominance.png') }}" width="600" style="display: block; margin: 0 auto;">
+        </div>
+
+        <!-- Right stack -->
+        <div style="
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        ">
+            <img src="{{ url_for('static', filename='media/drivers/' + driver2_id + '_full.avif') }}" alt="Right top" style="width: 100px;">
+            <img src="{{ url_for('static', filename='media/constructors/' + con2 + '.png') }}" alt="Left top" style="width: 100px;">
+            <img src="{{ url_for('static', filename='media/cars/' + con2 + '_2025.png') }}" alt="Right bottom" style="width: 500px; transform: rotateY(180deg);">
+        </div>
+    </div>
+    
+    
 
     {{ graph | safe }}
 
