@@ -12,7 +12,7 @@ from DataAcq.LastSession import LastSession
 from DataAcq.Drivers import drivers
 from DataAcq.Circuits import Circuits
 from util import time_conversion as tc
-from util import circuit_map, race_mapping, colors, constructor_mapping
+from util import circuit_map, race_mapping, colors, constructor_mapping, track_dominance
 from DataAcq.Telemetry import telem
 import plotly.express as px
 import json
@@ -278,12 +278,16 @@ def get_telemetry():
        if driver['Driver']['code'] == driver2
      )
 
+    driver1_id = d1['Driver']['driverId']
+    driver2_id = d2['Driver']['driverId']
+    
     driver1_name = d1['Driver']['familyName']
     driver2_name = d2['Driver']['familyName']
+
     con1 = d1['Constructor']['constructorId']
     con2 = d2['Constructor']['constructorId']
-    driver1_color = '#' + next((x['color'] for x in constructor_mapping.CONSTRUCTOR_MAP.values() if x['id'] == con1), None)
-    driver2_color = '#' + next((x['color'] for x in constructor_mapping.CONSTRUCTOR_MAP.values() if x['id'] == con2), None)
+    driver1_color = '#' + next((x['color'] for x in constructor_mapping.CONSTRUCTOR_MAP.values() if x['id'] == con1), 'FFFFFF')
+    driver2_color = '#' + next((x['color'] for x in constructor_mapping.CONSTRUCTOR_MAP.values() if x['id'] == con2), 'FFFFFF')
 
     if driver1_color == driver2_color:
         driver2_color = colors.shift_hue(driver2_color, 0.15)
@@ -322,6 +326,18 @@ def get_telemetry():
     path = os.path.join(current_app.root_path, 'static', 'media', 'telemetry', 'speed_comparison.html')
     fig.write_html(path)
 
+    track_dominance.track_dominance(driver1, driver2, raceId, driver1_color, driver2_color)
+
+
     racename = request.args.get('raceId').replace('%20', ' ')
-    return render_template('telemetry.html', graph=graph, raceId=raceId, racename=racename, driver1_name=driver1_name, driver2_name=driver2_name)
+    return render_template('telemetry.html', 
+                           graph=graph, 
+                           raceId=raceId, 
+                           racename=racename, 
+                           driver1_name=driver1_name, 
+                           driver2_name=driver2_name,
+                           driver1_id=driver1_id,
+                           driver2_id=driver2_id,
+                           con1=con1,
+                           con2=con2)
 
