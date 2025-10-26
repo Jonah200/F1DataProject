@@ -10,6 +10,8 @@ import numpy as np
 import pandas as pd
 from matplotlib.colors import ListedColormap
 import os
+from io import BytesIO
+import base64
 
 
 # Enable the cache by providing the name of the cache folder
@@ -128,16 +130,23 @@ def track_dominance(driver1, driver2, raceId, color1, color2):
 
     plt.subplots_adjust(left=0, right=1, top=1, bottom=0)
 
-    file_path = "app/static/media/track_dominance/track_dominance.png"
+    #file_path = "app/static/media/track_dominance/track_dominance.png"
+    buf = BytesIO()
     
-    if os.path.exists(file_path):
-        os.remove(file_path)
+    # if os.path.exists(file_path):
+    #     os.remove(file_path)
         
     plt.savefig(
-        file_path,
+        buf,
         bbox_inches='tight',   # trims extra whitespace
         pad_inches=0,          # no padding
         transparent=True,      # transparent background
         facecolor='none',
         edgecolor='none'
     )
+    plt.close()
+
+    buf.seek(0)
+    img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+    img_data_url = f"data:image/png;base64,{img_base64}"
+    return img_data_url

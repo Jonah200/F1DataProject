@@ -3,54 +3,74 @@
 {% block content %}
     <div class="container-fluid">
         <title>Telemetry Comparison</title>
-        <div class="row">
+        <div class="row vh-100 overflow-hidden">
             <div class="col col-xs-3">
                 <h5 class="text-center">Race/Driver Selection</h5>
             
                 <h6 class="text-center">Telemetry Comparison</h6>
-                <div class="mb-3">
-                    <label for="race">Select Race:</label>
-                    <select id="race" class="form-select">
-                        <option value="" disabled selected>Select a race</option>
-                        {% for race in races %}
-                            <option value="{{ race }}" {% if request.args.get('race') == r|string %}selected{% endif %}>{{ race }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+                <form id="theForm" action="/get_telemetry" method="get">
+                    <div class="mb-3">
+                        <label for="race">Select Race:</label>
+                        <select id="race" class="form-select" name="raceId">
+                            <option value="" disabled selected>Select a race</option>
+                            {% for race in races %}
+                                <option value="{{ race }}" {% if request.args.get('race') == r|string %}selected{% endif %}>{{ race }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="session">Session:</label>
-                    <select class="form-select" id="session">
-                        <option disabled selected>TODO</option>
-                    </select>
-                </div>
+                    <div class="mb-3">
+                        <label for="session">Session:</label>
+                        <select class="form-select" id="session">
+                            <option disabled selected>TODO</option>
+                        </select>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="driver1">Driver 1:</label>
-                    <select class="form-select" id="driver1">
-                        <option disabled selected>Select a race first</option>
-                    </select>
-                </div>
+                    <div class="mb-3">
+                        <label for="driver1">Driver 1:</label>
+                        <select class="form-select" id="driver1" name="driver1">
+                            <option disabled selected>Select a race first</option>
+                        </select>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="driver2">Driver 2:</label>
-                    <select class="form-select" id="driver2">
-                        <option disabled selected>Select a race first</option>
-                    </select>
-                </div>
+                    <div class="mb-3">
+                        <label for="driver2">Driver 2:</label>
+                        <select class="form-select" id="driver2" name="driver2">
+                            <option disabled selected>Select a race first</option>
+                        </select>
+                    </div>
 
-                <div class="text-center mb-3">
-                    <button class="btn btn-success" type="submit" onclick="getTelemetry()">Show Telemetry</button>
-                </div>
-
+                    <div class="text-center mb-3">
+                        <button class="btn btn-success" type="submit">Show Telemetry</button>
+                    </div>
+                </form>
                 <pre id="result"></pre>
             </div>
             <div class="vr p-0"></div>
-            <div class="col col-9 overflow-y-scroll"></div>
+            <div class="col col-9 overflow-y-auto overflow-x-hidden" id="resultArea" style="height:100%">
+                <div class="row">
+                    <div class="text-center p-3" id="datalabel">
+
+                    </div>
+                    <div class="col col-4 text-center" id="driver1Div">
+
+                    </div>
+                    <div class="col col-4" id="trackDominance">
+
+                    </div>
+                    <div class="col col-4 text-center" id="driver2Div">
+
+                    </div>
+                </div>
+                <div id="plotDiv">
+
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
 {% block scripts %}
+{% raw %}
 <script>
     $('#race').on('change', function () {
         loadDrivers();
@@ -74,16 +94,44 @@
         });
     }
 
-    async function getTelemetry() {
-        const raceId = $('#race').val();
-        const driver1 = $('#driver1').val();
-        const driver2 = $('#driver2').val();
-
-        document.location.href = `/get_telemetry?raceId=${raceId}&driver1=${driver1}&driver2=${driver2}`;
-
-        // const data = await response.json();
-
-        // document.getElementById('result').textContent = JSON.stringify(data, null, 2);
-    }
+    $('#theForm').on('submit', function(e){
+        e.preventDefault();
+        let $form = $(this);
+        $('#datalabel').html('<div class="text-center p-3"><div class="spinner-border" role="status"></div></div>');
+        $.ajax({
+            url: $form.attr('action'),
+            method: $form.attr('method'),
+            data: $form.serialize(),
+            success: function(response){
+                $('#datalabel').html(`
+                    <h2 class="text-center">${response.racename} Qualifying:</h2><br>
+                    <h3 class="text-center">${response.driver1_name} VS ${response.driver2_name}</h3>
+                `)
+                $('#driver1Div').html(`
+                    <img class="telemDriver" src="/static/media/drivers/${response.driver1_id}_full.avif" alt="Left top">
+                    <img class="telemLogo" src="/static/media/constructors/${response.con1}.png" alt="Left top">
+                    <img src="/static/media/cars/${response.con1}_2025.png" alt="Left bottom" width="100%">
+                `);
+                $('#driver2Div').html(`
+                    <img class="telemLogo" src="/static/media/constructors/${response.con2}.png" alt="Left top">
+                    <img class="telemDriver" src="/static/media/drivers/${response.driver2_id}_full.avif" alt="Left top">
+                    <img class="telemRotateCar" src="/static/media/cars/${response.con2}_2025.png" alt="Left bottom" width="100%">
+                `);
+                $('#trackDominance').html(`
+                    <img src="${response.track_dominance}" width="100%" style="vertical-align: bottom;">
+                `);
+                let fig = JSON.parse(response.graph);
+                Plotly.newPlot("plotDiv", fig.data, fig.layout);
+            },
+            error: function(){
+                $('#datalabel').html('<div class="alert alert-danger">Error loading content.</div>');
+            }
+        });
+        
+        //setTimeout(function() {
+        //    Plotly.Plots.resize($("#resultArea .plotly-graph-div")[0]);
+        //}, 100);
+    });
 </script>
+{% endraw %}
 {% endblock %}

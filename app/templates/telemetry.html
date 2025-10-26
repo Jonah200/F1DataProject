@@ -1,7 +1,3 @@
-{% extends "base.html" %}
-
-{% block content %}
-
     <h2 style="text-align: center;">{{ racename }} Qualifying:</h2><br>
     <h3 style="text-align: center;">{{ driver1_name }} vs {{ driver2_name }}</h3>
     <div style="position: relative; width: 100%; height: 600px;">
@@ -49,8 +45,5 @@
         </div>
     </div>
     
-    
 
     {{ graph | safe }}
-
-{% endblock %}

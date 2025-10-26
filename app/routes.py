@@ -1,5 +1,5 @@
 from app import app, db
-from flask import render_template, flash, redirect, url_for, request, current_app
+from flask import jsonify, render_template, flash, redirect, url_for, request, current_app
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm
 from flask_login import current_user, login_user, logout_user, login_required
 import sqlalchemy as sa
@@ -20,6 +20,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import os
 import plotly.io as pio
+from plotly.utils import PlotlyJSONEncoder
 
 @login_required
 @app.route('/index')
@@ -296,8 +297,8 @@ def get_telemetry():
     fig = go.Figure()
 
     fig.add_trace(go.Scatter(
-        x=df1['Time'],
-        y=df1['Speed'],
+        x=df1['Time'].tolist(),
+        y=df1['Speed'].tolist(),
         mode='lines',
         name=driver1_name,
         line=dict(color=driver1_color),
@@ -305,8 +306,8 @@ def get_telemetry():
     ))
 
     fig.add_trace(go.Scatter(
-        x=df2['Time'],
-        y=df2['Speed'],
+        x=df2['Time'].tolist(),
+        y=df2['Speed'].tolist(),
         mode='lines',
         name=driver2_name,
         line=dict(color=driver2_color),
@@ -318,26 +319,26 @@ def get_telemetry():
         xaxis_title='Time',
         yaxis_title='Speed (km/h)',
         template='plotly_dark',
+        paper_bgcolor='#1f2029',
+        plot_bgcolor="#000000",
         hovermode='x'
     )
 
-    
-    graph = pio.to_html(fig, full_html=False, include_plotlyjs='cdn')
-    path = os.path.join(current_app.root_path, 'static', 'media', 'telemetry', 'speed_comparison.html')
-    fig.write_html(path)
+    graph_data = json.dumps(fig, cls=PlotlyJSONEncoder)
+    # path = os.path.join(current_app.root_path, 'static', 'media', 'telemetry', 'speed_comparison.html')
+    # fig.write_html(path)
 
-    track_dominance.track_dominance(driver1, driver2, raceId, driver1_color, driver2_color)
-
+    trackDom = track_dominance.track_dominance(driver1, driver2, raceId, driver1_color, driver2_color)
 
     racename = request.args.get('raceId').replace('%20', ' ')
-    return render_template('telemetry.html', 
-                           graph=graph, 
-                           raceId=raceId, 
-                           racename=racename, 
-                           driver1_name=driver1_name, 
-                           driver2_name=driver2_name,
-                           driver1_id=driver1_id,
-                           driver2_id=driver2_id,
-                           con1=con1,
-                           con2=con2)
-
+    return jsonify({
+        "racename" : racename,
+        "track_dominance" : trackDom,
+        "graph" : graph_data,
+        "driver1_name" : driver1_name,
+        "driver2_name" : driver2_name,
+        "driver1_id" : driver1_id,
+        "driver2_id" : driver2_id,
+        "con1" : con1,
+        "con2" : con2
+    })

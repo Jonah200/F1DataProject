@@ -14,3 +14,15 @@ body{
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Beyonders', sans-serif;
 }
+
+.telemDriver {
+	max-height: 200px;
+}
+
+.telemLogo {
+	max-height: 50px;
+}
+
+.telemRotateCar {
+	transform: rotateY(180deg);
+}
