@@ -313,14 +313,14 @@ def get_telemetry():
         line=dict(color=driver2_color),
         hovertemplate='%{y:.2f}<extra></extra>'
     ))
-
     fig.update_layout(
-        # title=f"{request.args.get('raceId').replace('%20', ' ')} Qualifying: {driver1_name} vs {driver2_name}",
-        xaxis_title='Time',
+        title=f"{request.args.get('raceId').replace('%20', ' ')} Qualifying: {driver1_name} vs {driver2_name}",
+        xaxis_title="Time",
         yaxis_title='Speed (km/h)',
         template='plotly_dark',
-        paper_bgcolor='#1f2029',
-        plot_bgcolor="#000000",
+        paper_bgcolor='#16171d',
+        plot_bgcolor="#1f1f1f",
+        font_color = "#969696",
         hovermode='x'
     )
 

@@ -62,8 +62,8 @@
 
                     </div>
                 </div>
-                <div id="plotDiv">
-
+                <div class="rounded-0 card">
+                    <div class="cardBody" id="plotDiv"></div>
                 </div>
             </div>
         </div>
@@ -121,7 +121,7 @@
                     <img src="${response.track_dominance}" width="100%" style="vertical-align: bottom;">
                 `);
                 let fig = JSON.parse(response.graph);
-                Plotly.newPlot("plotDiv", fig.data, fig.layout);
+                Plotly.newPlot("plotDiv", fig);
             },
             error: function(){
                 $('#datalabel').html('<div class="alert alert-danger">Error loading content.</div>');
